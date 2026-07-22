@@ -192,6 +192,11 @@
   margin-bottom: 1rem;
   font-variant-emoji: text;
 }
+.card-icon svg {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+}
 .card-title {
   margin-bottom: 0.75rem;
 }
