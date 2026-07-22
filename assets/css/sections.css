@@ -1,0 +1,135 @@
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0;
+}
+
+#inicio.parallax-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
+}
+
+.parallax-layer-bg {
+  opacity: 0;
+  transition: opacity 600ms var(--ease-kowalski);
+}
+.parallax-layer-bg.is-loaded {
+  opacity: 1;
+}
+
+.parallax-layer-mid {
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-kowalski);
+}
+.parallax-layer-mid.is-loaded {
+  opacity: 0.35;
+}
+
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 16, 14, 0.88) 0%,
+    rgba(20, 16, 14, 0.82) 100%
+  );
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Carrusel del Hero ---------- */
+.hero-carousel {
+  opacity: 1;
+}
+
+.hero-carousel-mid {
+  mix-blend-mode: overlay;
+  opacity: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+}
+
+.hero-carousel .hero-slide.is-active {
+  opacity: 1;
+}
+
+.hero-carousel-mid .hero-slide.is-active {
+  opacity: 0.35;
+}
+
+/* ---- About ---- */
+.about-img-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Contacto ---- */
+.contact-content {
+  padding: 6rem 1.5rem;
+}
+.contact-btn {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .parallax-container {
+    padding: 4rem 0;
+  }
+}
+/* ==================== RESPONSIVE: SECCIONES / HERO ==================== */
+@media (max-width: 768px) {
+  .parallax-container {
+    padding: 3.5rem 0;
+  }
+  #inicio.parallax-container {
+    min-height: 90vh;
+    padding-top: 4.5rem;
+  }
+  .contact-content {
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .parallax-container {
+    padding: 2.5rem 0;
+  }
+  #inicio.parallax-container {
+    min-height: 100vh;
+  }
+}
+
+/* Reduce el "respiro" extra de la capa parallax en móvil para ahorrar repintado */
+@media (max-width: 600px) {
+  .parallax-layer {
+    top: -5%;
+    height: 110%;
+  }
+}

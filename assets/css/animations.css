@@ -1,0 +1,89 @@
+/* ---------- Reveal on scroll (todas las secciones) ---------- */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity var(--duration-slow) var(--ease-kowalski),
+    transform var(--duration-slow) var(--ease-kowalski);
+}
+.reveal.slide-up {
+  transform: translateY(28px);
+}
+.reveal.slide-left {
+  transform: translateX(28px);
+}
+.reveal.slide-right {
+  transform: translateX(-28px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.reveal.delay-100.is-visible {
+  transition-delay: 80ms;
+}
+.reveal.delay-200.is-visible {
+  transition-delay: 160ms;
+}
+.reveal.delay-300.is-visible {
+  transition-delay: 240ms;
+}
+.reveal.delay-400.is-visible {
+  transition-delay: 320ms;
+}
+
+/* ---------- Parallax layers (transform aplicado vía JS) ---------- */
+.parallax-layer-bg,
+.parallax-layer-mid,
+.parallax-content {
+  will-change: transform;
+}
+
+/* ---------- Hero dynamic text ---------- */
+.dynamic-text {
+  display: inline-block;
+  color: var(--color-accent);
+  transition: opacity var(--duration-base) var(--ease-kowalski);
+}
+.dynamic-text.is-fading {
+  opacity: 0;
+}
+
+/* ---------- Modal de abogados (fade + scale) ---------- */
+.lawyer-modal {
+  transition:
+    opacity var(--duration-base) var(--ease-kowalski),
+    visibility var(--duration-base) var(--ease-kowalski);
+}
+.lawyer-modal__container {
+  transition: transform var(--duration-base) var(--ease-kowalski);
+}
+
+/* ---------- Carrusel del Hero (crossfade lento) ---------- */
+.hero-slide {
+  transition: opacity var(--duration-hero) var(--ease-kowalski);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .parallax-layer-bg,
+  .parallax-layer-mid,
+  .parallax-content,
+  .card,
+  .btn-primary,
+  .btn-accent,
+  .dynamic-text,
+  .lawyer-modal,
+  .lawyer-modal__container,
+  .hero-slide {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .hero-slide:not(.is-active) {
+    opacity: 0 !important;
+  }
+}
