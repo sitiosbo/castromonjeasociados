@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo.png';
+---
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo">
+      <Image
+        src={logo}
+        alt="Castro & Monje Asociados"
+        height={44}
+        class="logo-img"
+        loading="eager"
+      />
+    </a>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      &#9776;
+    </button>
+    <div class="nav-menu">
+      <a href="#nosotros" class="nav-link">Nosotros</a>
+      <a href="#areas" class="nav-link">Áreas de Práctica</a>
+      <a href="#equipo" class="nav-link">Equipo</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contacto" class="btn btn-primary">Evaluación Inicial</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .logo-img {
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logo-img {
+      height: 30px;
+    }
+  }
+</style>
+
+<script>
+  import '../scripts/mobile-menu.js';
+</script>

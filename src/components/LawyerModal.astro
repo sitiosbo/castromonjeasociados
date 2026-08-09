@@ -1,0 +1,21 @@
+---
+import { lawyersData } from '../data/lawyers.js';
+---
+
+<!-- Modal de Abogados -->
+<script is:inline type="application/json" id="lawyers-data" set:html={JSON.stringify(lawyersData)} />
+
+<div class="lawyer-modal" id="lawyer-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="lawyer-modal__overlay" data-modal-close></div>
+  <div class="lawyer-modal__container">
+    <button class="lawyer-modal__close" aria-label="Cerrar">&times;</button>
+    <img class="lawyer-modal__photo" src="" alt="" loading="lazy" decoding="async" />
+    <div class="lawyer-modal__body">
+      <h3 class="lawyer-modal__name"></h3>
+      <p class="lawyer-modal__role"></p>
+      <p class="lawyer-modal__specialty"></p>
+      <p class="lawyer-modal__bio"></p>
+      <a class="lawyer-modal__whatsapp btn btn-primary" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+    </div>
+  </div>
+</div>

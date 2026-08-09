@@ -1,0 +1,39 @@
+---
+import { practiceAreas } from '../data/practiceAreas.js';
+
+const delays = ['delay-100', 'delay-200', 'delay-300'];
+---
+
+<!-- Áreas de práctica -->
+<section id="areas" class="parallax-container">
+  <div
+    class="parallax-layer parallax-layer-bg"
+    data-bg="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop"
+    data-speed="0.15"
+  ></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content container">
+    <div class="text-center reveal slide-up">
+      <h2 class="section-title center">Nuestras Especialidades Legales</h2>
+      <p class="section-subtitle">
+        Brindamos representación legal experta en diversas ramas del derecho
+        boliviano.
+      </p>
+    </div>
+    <div class="grid-3">
+      {practiceAreas.map((area, i) => (
+        <div class={`card reveal slide-up ${delays[i % 3]}`}>
+          <div class="card-icon" set:html={area.svgIcon} />
+          <h3 class="card-title">{area.title}</h3>
+          <p class="card-text">{area.description}</p>
+          <a
+            href={`https://wa.me/59170557088?text=${area.whatsappText}`}
+            target="_blank"
+            rel="noopener"
+            class="card-link"
+          >{area.linkText} &rarr;</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

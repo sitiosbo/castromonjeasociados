@@ -1,0 +1,35 @@
+---
+import { processSteps } from '../data/processSteps.js';
+
+const delays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'];
+---
+
+<!-- Proceso -->
+<section id="proceso" class="parallax-container">
+  <div
+    class="parallax-layer parallax-layer-bg"
+    data-bg="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2000&auto=format&fit=crop"
+    data-speed="0.15"
+  ></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content container">
+    <div class="text-center reveal slide-up">
+      <h2 class="section-title center">
+        4 Pasos para Resolver su Problema Legal
+      </h2>
+      <p class="section-subtitle">
+        Nuestro método está diseñado para darle tranquilidad y control sobre
+        su situación jurídica.
+      </p>
+    </div>
+    <ol class="grid-4 process-list">
+      {processSteps.map((step, i) => (
+        <li class={`process-step reveal slide-up ${delays[i]}`}>
+          <div class="process-icon">{step.number}</div>
+          <h4>{step.title}</h4>
+          <p class="process-text">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

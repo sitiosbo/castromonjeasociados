@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import aboutOffice from '../assets/images/about-office.jpg';
+---
+
+<!-- Sobre el despacho -->
+<section id="nosotros" class="parallax-container">
+  <div
+    class="parallax-layer parallax-layer-bg"
+    data-bg="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
+    data-speed="0.15"
+  ></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content container grid-2">
+    <div class="about-content reveal slide-right">
+      <h2 class="section-title">
+        ¿Por qué elegir Castro & Monje Asociados?
+      </h2>
+      <p>
+        Ubicados estratégicamente en <strong>La Paz, Bolivia</strong>,
+        nuestro estudio jurídico se fundamenta en pilares inquebrantables:
+        el análisis profundo de cada caso, la transparencia total sobre el
+        proceso, y la búsqueda implacable de resultados favorables.
+      </p>
+      <p>
+        Si se pregunta "¿Cómo encontrar un buen abogado en La Paz?", la
+        respuesta está en nuestro compromiso. No tomamos atajos. Diseñamos
+        estrategias legales sólidas, ya sea para corporaciones que buscan
+        seguridad jurídica o personas enfrentando procesos complejos.
+      </p>
+      <br />
+      <div class="grid-2">
+        <div>
+          <h4 class="text-primary">Estrategia</h4>
+          <p class="text-muted">Diseño a medida del caso</p>
+        </div>
+        <div>
+          <h4 class="text-primary">Transparencia</h4>
+          <p class="text-muted">Presupuestos sin sorpresas</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-img reveal slide-left">
+      <div class="about-img-wrapper">
+        <Image
+          src={aboutOffice}
+          alt="Bufete de Abogados en La Paz Bolivia"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>

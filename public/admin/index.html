@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Castro & Monje — Panel de Contenido</title>
+  </head>
+  <body>
+    <script src="/admin/decap-cms.js"></script>
+    <script>
+      var BlogPreview = createClass({
+        render: function () {
+          var entry = this.props.entry;
+          var image = entry.getIn(["data", "image"]);
+          var imageAsset = image ? this.props.getAsset(image) : null;
+
+          return h(
+            "div",
+            { className: "blog-article container container--narrow" },
+            h(
+              "div",
+              { className: "blog-header" },
+              h(
+                "span",
+                { className: "blog-date" },
+                String(entry.getIn(["data", "date"]) || ""),
+              ),
+              h(
+                "h1",
+                { className: "display-md" },
+                entry.getIn(["data", "title"]) || "(sin título)",
+              ),
+              h(
+                "p",
+                { className: "blog-desc" },
+                entry.getIn(["data", "description"]) || "",
+              ),
+            ),
+            imageAsset
+              ? h("img", {
+                  className: "blog-hero-img",
+                  src: imageAsset.toString(),
+                  alt: entry.getIn(["data", "title"]) || "",
+                })
+              : null,
+            h("div", { className: "prose" }, this.props.widgetFor("body")),
+          );
+        },
+      });
+
+      CMS.registerPreviewTemplate("blog", BlogPreview);
+    </script>
+    <script>
+      CMS.registerPreviewStyle("/styles/global.css");
+    </script>
+  </body>
+</html>

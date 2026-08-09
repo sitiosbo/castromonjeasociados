@@ -1,0 +1,213 @@
+---
+---
+
+<section class="parallax-container" id="inicio">
+  <!-- Carrusel de fondo (bg) -->
+  <div class="parallax-layer hero-carousel" data-speed="0.15">
+    <div class="hero-slide is-active" style="background-image:url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop')"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2000&auto=format&fit=crop"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop"></div>
+  </div>
+  <!-- Carrusel mid (overlay) -->
+  <div class="parallax-layer hero-carousel-mid" data-speed="0.35">
+    <div class="hero-slide is-active" style="background-image:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2000&auto=format&fit=crop')"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2000&auto=format&fit=crop"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2000&auto=format&fit=crop"></div>
+    <div class="hero-slide" data-src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2000&auto=format&fit=crop"></div>
+  </div>
+  <div class="parallax-overlay"></div>
+  <div
+    class="parallax-content reveal slide-up text-center"
+    data-speed="0.05"
+    style="max-width: 900px; margin: 0 auto"
+  >
+    <h1>
+      Especialistas en
+      <span
+        class="dynamic-text"
+        data-words='["Derecho Corporativo", "Defensa Penal", "Derecho Civil", "Asesoría Laboral", "Derecho de Familia"]'
+        data-descriptions='["Protegemos su empresa con asesoría integral: contratos, fusiones, compliance y gobierno corporativo en La Paz, Bolivia.", "Defensa técnica estratégica en cada etapa del proceso penal. Confidencialidad absoluta y protección de sus derechos.", "Resolución de contratos, sucesiones, derechos reales y cobro de deudas con más de 15 años de experiencia.", "Prevención y solución de conflictos laborales, beneficios sociales y negociación colectiva para empleadores y trabajadores.", "Divorcios, pensiones alimenticias, guardas y tutelas con empatía, reserva total y enfoque en el bienestar familiar."]'
+      ></span>
+    </h1>
+    <p id="hero-description">
+      Estudio de abogados especializado en proteger sus intereses
+      corporativos y personales con integridad, confidencialidad absoluta y
+      resultados comprobados en La Paz, Bolivia.
+    </p>
+    <a
+      href="https://wa.me/59170557088?text=Hola,%20quisiera%20solicitar%20una%20evaluaci%C3%B3n%20inicial%20de%20mi%20caso."
+      target="_blank"
+      rel="noopener"
+      class="btn btn-primary"
+      >Hablar con un Abogado Ahora</a
+    >
+  </div>
+</section>
+
+<script is:inline>
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var textEl = document.querySelector(".dynamic-text");
+    var descEl = document.getElementById("hero-description");
+    var carouselBg = document.querySelector(".hero-carousel");
+    var carouselMid = document.querySelector(".hero-carousel-mid");
+    if (!textEl || !carouselBg || !carouselMid) return;
+
+    var words = JSON.parse(textEl.dataset.words || "[]");
+    var descriptions = JSON.parse(textEl.dataset.descriptions || "[]");
+    if (!words.length) return;
+
+    var bgSlides = carouselBg.querySelectorAll(".hero-slide");
+    var midSlides = carouselMid.querySelectorAll(".hero-slide");
+    if (!bgSlides.length || !midSlides.length) return;
+
+    var currentSlide = 0;
+    var timerId = null;
+    var isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function goToSlide(index) {
+      bgSlides.forEach(function (s) { s.classList.remove("is-active"); });
+      midSlides.forEach(function (s) { s.classList.remove("is-active"); });
+      bgSlides[index].classList.add("is-active");
+      midSlides[index].classList.add("is-active");
+      textEl.textContent = words[index];
+      if (descEl && descriptions[index]) descEl.textContent = descriptions[index];
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      goToSlide((currentSlide + 1) % bgSlides.length);
+    }
+
+    function startTimer() {
+      if (timerId) clearInterval(timerId);
+      timerId = setInterval(nextSlide, 5000);
+    }
+
+    function stopTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    if (isReduced) {
+      goToSlide(0);
+      return;
+    }
+
+    goToSlide(0);
+
+    function precargarDiferidos() {
+      var bgPending = carouselBg.querySelectorAll(".hero-slide[data-src]");
+      bgPending.forEach(function (el) {
+        el.style.backgroundImage = 'url("' + el.dataset.src + '")';
+        el.removeAttribute("data-src");
+      });
+      var midPending = carouselMid.querySelectorAll(".hero-slide[data-src]");
+      midPending.forEach(function (el) {
+        el.style.backgroundImage = 'url("' + el.dataset.src + '")';
+        el.removeAttribute("data-src");
+      });
+    }
+
+    function onPageReady() {
+      precargarDiferidos();
+      startTimer();
+    }
+
+    if (window.requestIdleCallback) {
+      window.addEventListener("load", function () {
+        requestIdleCallback(onPageReady, { timeout: 3000 });
+      });
+    } else {
+      window.addEventListener("load", function () {
+        setTimeout(onPageReady, 1000);
+      });
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        stopTimer();
+      } else {
+        startTimer();
+      }
+    });
+  });
+})();
+</script>
+
+<script is:inline>
+(function () {
+  var bgLayers = document.querySelectorAll("[data-bg], [data-mid]");
+  var bgObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var url = el.dataset.bg || el.dataset.mid;
+          el.style.backgroundImage = 'url("' + url + '")';
+          el.classList.add("is-loaded");
+          bgObserver.unobserve(el);
+        }
+      });
+    },
+    { rootMargin: "200px 0px" },
+  );
+  bgLayers.forEach(function (el) {
+    bgObserver.observe(el);
+  });
+
+  var parallaxEls = document.querySelectorAll("[data-speed]");
+  var targetY = window.scrollY;
+  var currentY = window.scrollY;
+  var rafId = null;
+  var scrollHandler = null;
+
+  function resetTransforms() {
+    parallaxEls.forEach(function (el) {
+      el.style.transform = "none";
+    });
+  }
+
+  function animateParallax() {
+    currentY += (targetY - currentY) * 0.08;
+    parallaxEls.forEach(function (el) {
+      var speed = parseFloat(el.dataset.speed) || 0.2;
+      el.style.transform = "translate3d(0," + currentY * speed + "px,0)";
+    });
+    rafId = requestAnimationFrame(animateParallax);
+  }
+
+  function startParallax() {
+    if (rafId) return;
+    targetY = window.scrollY;
+    currentY = window.scrollY;
+    scrollHandler = function () { targetY = window.scrollY; };
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+    animateParallax();
+  }
+
+  function stopParallax() {
+    if (scrollHandler) {
+      window.removeEventListener("scroll", scrollHandler);
+      scrollHandler = null;
+    }
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    resetTransforms();
+  }
+
+  var mql = window.matchMedia("(max-width: 767px)");
+  function handleViewportChange(e) {
+    if (e.matches) { stopParallax(); } else { startParallax(); }
+  }
+  mql.addEventListener("change", handleViewportChange);
+  handleViewportChange(mql);
+})();
+</script>

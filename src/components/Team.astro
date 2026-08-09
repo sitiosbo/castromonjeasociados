@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import lawyerRicardo from '../assets/images/lawyer-ricardo.jpg';
+import lawyerCarolina from '../assets/images/lawyer-carolina.jpg';
+---
+
+<!-- Equipo -->
+<section id="equipo" class="parallax-container">
+  <div
+    class="parallax-layer parallax-layer-bg"
+    data-bg="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"
+    data-speed="0.15"
+  ></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content container">
+    <div class="text-center reveal slide-up">
+      <h2 class="section-title center">Nuestros Abogados Asociados</h2>
+      <p class="section-subtitle">
+        Representación de alto nivel por profesionales reconocidos en La
+        Paz.
+      </p>
+    </div>
+    <div class="grid-2 team-grid">
+      <div class="card reveal slide-up delay-100" data-lawyer-id="socio-fundador">
+        <Image
+          class="team-photo"
+          src={lawyerRicardo}
+          alt="Abogado Corporativo en La Paz"
+          loading="lazy"
+          decoding="async"
+        />
+        <h3 class="card-title">Dr. Ricardo Monje Valencia</h3>
+        <p class="text-accent team-role">Socio Fundador</p>
+        <p class="card-text">
+          Especialista en Derecho Corporativo y Civil. Magíster en Derecho
+          Empresarial. Más de 15 años asesorando a empresas bolivianas e
+          internacionales.
+        </p>
+      </div>
+      <div class="card reveal slide-up delay-200" data-lawyer-id="socia-principal">
+        <Image
+          class="team-photo"
+          src={lawyerCarolina}
+          alt="Abogada Penalista en La Paz"
+          loading="lazy"
+          decoding="async"
+        />
+        <h3 class="card-title">Dra. Carolina Castro Rivas</h3>
+        <p class="text-accent team-role">Socia Principal</p>
+        <p class="card-text">
+          Experta en Litigio Penal y Derecho de Familia. Amplia trayectoria
+          en mediación extrajudicial, pensiones y juicios orales en juzgados
+          paceños.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

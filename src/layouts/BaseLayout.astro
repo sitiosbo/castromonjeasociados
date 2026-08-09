@@ -1,0 +1,143 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { faqItems } from '../data/faq.js';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Castro & Monje Asociados | Abogados en La Paz, Bolivia',
+  description = 'Estudio de abogados en La Paz, Bolivia. Especialistas en Derecho Civil, Penal, Laboral, Corporativo y Familia. Resultados y confidencialidad garantizada.',
+} = Astro.props;
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+<!doctype html>
+<html lang="es-BO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://www.castromonje.com/" />
+    <head>
+  <!-- ... tus otras meta tags ... -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Castro & Monje Asociados | Abogados en La Paz"
+    />
+    <meta
+      property="og:description"
+      content="Estudio jurídico en La Paz, Bolivia. Experiencia, resultados y confidencialidad en diversas áreas del derecho. Evaluación inicial disponible."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.castromonje.com/" />
+    <meta property="og:locale" content="es_BO" />
+    <meta property="og:image" content="assets/images/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD LocalBusiness / LegalService -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "Castro & Monje Asociados",
+        "image": "https://www.castromonje.com/assets/images/og-image.jpg",
+        "@id": "https://www.castromonje.com/",
+        "url": "https://www.castromonje.com/",
+        "telephone": "+59170557088",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Mariscal Santa Cruz esq. Yanacocha, Edif. HANSA, Piso 15, Of. 1-2",
+          "addressLocality": "La Paz",
+          "addressRegion": "La Paz",
+          "postalCode": "0000",
+          "addressCountry": "BO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -16.49727,
+          "longitude": -68.13591
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "48"
+        }
+      }
+    </script>
+
+    <!-- Schema.org JSON-LD FAQPage (AEO) — generado dinámicamente desde src/data/faq.js -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema, null, 2)} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Navbar />
+    <Hero />
+    <slot />
+    <Footer />
+    <WhatsAppFloat />
+    <script is:inline>
+      (function () {
+        document.addEventListener("DOMContentLoaded", function () {
+          var revealEls = document.querySelectorAll(".reveal");
+          var revealObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15 },
+          );
+          revealEls.forEach(function (el) {
+            revealObserver.observe(el);
+          });
+        });
+      })();
+    </script>
+    <script is:inline src="/scripts/main.js"></script>
+    <script is:inline src="/scripts/faq-accordion.js"></script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/images/logo2.png";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+                <a href="#" class="footer-logo">
+          <Image src={logo} alt="Castro & Monje Asociados" width={220} height={133} />
+        </a>
+
+        <p class="footer-text">
+          Bufete de Abogados en La Paz, Bolivia.<br />Integridad,
+          transparencia y resultados en la defensa de sus derechos.
+        </p>
+      </div>
+      <div>
+        <h4>Contacto Local</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+59170557088">Telf: +591 70557088</a></li>
+          <li>
+            <a
+              href="https://wa.me/59170557088"
+              target="_blank"
+              rel="noopener"
+              >Chat por WhatsApp</a
+            >
+          </li>
+          <li>
+            <span class="footer-muted">Edif. HANSA, Piso 15, Of. 1-2</span>
+          </li>
+          <li>
+            <span class="footer-muted">Zona Central, La Paz, Bolivia</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#nosotros">Por qué elegirnos</a></li>
+          <li><a href="#areas">Áreas de Práctica</a></li>
+          <li><a href="#equipo">Nuestros Socios</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        &copy; {year} Castro & Monje Asociados.
+        Estudio Jurídico La Paz, Bolivia. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

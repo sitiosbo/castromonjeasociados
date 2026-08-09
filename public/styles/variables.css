@@ -1,0 +1,30 @@
+:root {
+  /* ---- Paleta extraída de la tarjeta Castro & Monje ---- */
+  --color-primary: #7a1f2e; /* vino/granate profundo */
+  --color-primary-dark: #4e1420; /* granate oscuro (hover, gradientes) */
+  --color-primary-light: #9a3245; /* granate claro */
+  --color-dark-bg: #14100e; /* casi-negro cálido */
+  --color-dark-bg-soft: #1d1815; /* variante para overlays menos densos */
+  --color-accent: #c9a66b; /* dorado champán, detalles premium */
+  --color-pure-white: #fdfbf8;
+  --color-cream: #f5efe6;
+  --color-text-muted: rgba(245, 239, 230, 0.72);
+  --color-text-dark-muted: rgba(20, 16, 14, 0.65);
+
+  /* ---- Tipografía ---- */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* ---- Timing "Emil Kowalski": corto, con easing overshoot suave ---- */
+  --ease-kowalski: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 180ms;
+  --duration-base: 260ms;
+  --duration-slow: 900ms;
+  --duration-hero: 1800ms; /* crossfade lento del carrusel del hero */
+
+  /* ---- Layout / espaciado ---- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.35);
+  --container-max: 1200px;
+}

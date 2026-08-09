@@ -1,0 +1,82 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('es-BO', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BlogLayout
+  title={`${post.data.title} | Castro & Monje Asociados`}
+  description={post.data.description}
+  canonicalPath={`/blog/${post.id}/`}
+  ogImage={post.data.image}
+>
+  <article class="blog-article">
+    <div class="container container--narrow">
+      <nav class="breadcrumb">
+        <a href="/">Inicio</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <a href="/blog/">Blog</a>
+        <span class="breadcrumb-sep">&rsaquo;</span>
+        <span class="breadcrumb-current">{post.data.title}</span>
+      </nav>
+
+      <header class="blog-header">
+        <time class="blog-date" datetime={post.data.date.toISOString()}>
+          {formatDate(post.data.date)}
+        </time>
+        <h1 class="display-md">{post.data.title}</h1>
+        <p class="blog-desc">{post.data.description}</p>
+        {post.data.tags && (
+          <div class="blog-tags">
+            {post.data.tags.map((tag) => (
+              <span class="tag-badge">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      {post.data.image && (
+        <img
+          src={post.data.image}
+          alt={post.data.title}
+          class="blog-hero-img"
+          loading="eager"
+        />
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="blog-cta">
+        <p>¿Necesitas asesoría legal personalizada?</p>
+        <a
+          href="https://wa.me/59170557088?text=Hola,%20quisiera%20asesor%C3%ADa%20legal%20sobre%20un%20tema%20laboral."
+          target="_blank"
+          rel="noopener"
+          class="btn btn-accent"
+        >
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </article>
+</BlogLayout>

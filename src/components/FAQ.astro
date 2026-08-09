@@ -1,0 +1,33 @@
+---
+import { faqItems } from '../data/faq.js';
+---
+
+<section id="faq" class="parallax-container">
+  <div
+    class="parallax-layer parallax-layer-bg"
+    data-bg="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2000&auto=format&fit=crop"
+    data-speed="0.15"
+  ></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content container">
+    <div class="text-center reveal slide-up">
+      <h2 class="section-title center">Respuestas Rápidas (FAQ Legal)</h2>
+      <p class="section-subtitle">
+        Consultas comunes que recibimos en nuestro despacho en La Paz.
+      </p>
+    </div>
+    <div class="faq-box reveal slide-up delay-100">
+      {faqItems.map((item, i) => (
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>{item.question}</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

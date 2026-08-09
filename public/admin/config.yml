@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: blog
+    label: "Blog"
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: true
+    fields:
+      - { name: title, label: "Título", widget: string }
+      - { name: description, label: "Descripción corta", widget: text }
+      - { name: date, label: "Fecha de publicación", widget: datetime, required: false }
+      - { name: image, label: "Imagen destacada", widget: image, required: false }
+      - name: tags
+        label: "Etiquetas"
+        widget: list
+        required: false
+        field: { name: tag, label: "Etiqueta", widget: string }
+      - { name: body, label: "Contenido", widget: markdown, modes: ["raw"] }
