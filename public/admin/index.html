@@ -7,7 +7,87 @@
     <title>Castro & Monje — Panel de Contenido</title>
   </head>
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression/dist/browser-image-compression.js"></script>
     <script src="/admin/decap-cms.js"></script>
+
+    <script>
+      CMS.registerPreviewStyle("/styles/variables.css");
+      CMS.registerPreviewStyle("/styles/components.css");
+      CMS.registerPreviewStyle("/styles/sections.css");
+      CMS.registerPreviewStyle("/styles/animations.css");
+      CMS.registerPreviewStyle("/styles/global.css");
+    </script>
+
+    <script>
+      var CompressedImageControl = createClass({
+        getInitialState: function () {
+          return { status: null, statusType: 'info' };
+        },
+        handleChange: function (e) {
+          var file = e.target.files[0];
+          if (!file) return;
+          var self = this;
+
+          self.setState({ status: 'Comprimiendo ' + file.name + '...', statusType: 'info' });
+
+          var options = { maxSizeMB: 1.5, maxWidthOrHeight: 1920, useWebWorker: true };
+
+          window.imageCompression(file, options)
+            .then(function (compressedFile) {
+              var normalizedName = compressedFile.name
+                .toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^a-z0-9._-]/g, '-');
+              var normalizedFile = new File([compressedFile], normalizedName, {
+                type: compressedFile.type,
+              });
+
+              if (typeof self.props.onPersistMedia === 'function') {
+                var result = self.props.onPersistMedia(normalizedFile);
+                if (result && typeof result.then === 'function') {
+                  result
+                    .then(function () {
+                      self.props.onChange('/images/' + normalizedName);
+                      self.setState({
+                        status: 'Imagen comprimida y guardada (' +
+                          (file.size / 1024 / 1024).toFixed(2) + 'MB → ' +
+                          (compressedFile.size / 1024 / 1024).toFixed(2) + 'MB)',
+                        statusType: 'ok',
+                      });
+                    })
+                    .catch(function (err) {
+                      self.setState({ status: 'Error al guardar: ' + err.message, statusType: 'err' });
+                    });
+                }
+              }
+            })
+            .catch(function (err) {
+              self.setState({ status: 'Error al comprimir: ' + err.message, statusType: 'err' });
+            });
+        },
+        render: function () {
+          return h(
+            'div',
+            { style: { padding: '8px 0' } },
+            h('input', { type: 'file', accept: 'image/*', onChange: this.handleChange }),
+            this.state.status
+              ? h('div', { style: { fontSize: '13px', marginTop: '6px' } }, this.state.status)
+              : null
+          );
+        },
+      });
+
+      var CompressedImagePreview = createClass({
+        render: function () {
+          var value = this.props.value;
+          if (!value) return h('p', null, 'Sin imagen');
+          return h('img', { src: value, style: { maxWidth: '100%', maxHeight: '300px' } });
+        },
+      });
+
+      CMS.registerWidget('compressed-image', CompressedImageControl, CompressedImagePreview);
+    </script>
+
     <script>
       var BlogPreview = createClass({
         render: function () {
@@ -50,9 +130,6 @@
       });
 
       CMS.registerPreviewTemplate("blog", BlogPreview);
-    </script>
-    <script>
-      CMS.registerPreviewStyle("/styles/global.css");
     </script>
   </body>
 </html>

@@ -21,7 +21,7 @@ collections:
       - { name: title, label: "Título", widget: string }
       - { name: description, label: "Descripción corta", widget: text }
       - { name: date, label: "Fecha de publicación", widget: datetime, required: false }
-      - { name: image, label: "Imagen destacada", widget: image, required: false }
+      - { name: image, label: "Imagen destacada", widget: compressed-image, required: false }
       - name: tags
         label: "Etiquetas"
         widget: list
