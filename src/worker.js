@@ -34,7 +34,7 @@ async function handleAuth(request, env) {
       'state',
       crypto.getRandomValues(new Uint8Array(12)).join(''),
     );
-    return Response.redirect(redirectUrl.href, 301);
+    return Response.redirect(redirectUrl.href, 302);
   } catch (error) {
     return new Response(error.message, { status: 500 });
   }
