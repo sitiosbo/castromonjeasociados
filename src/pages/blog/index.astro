@@ -23,7 +23,7 @@ function formatDate(date: Date): string {
   <section class="hero-subpage">
     <div class="container">
       <nav class="breadcrumb">
-        <a href="/">Inicio</a>
+        <a href={import.meta.env.BASE_URL}>Inicio</a>
         <span class="breadcrumb-sep">&rsaquo;</span>
         <span class="breadcrumb-current">Blog</span>
       </nav>
@@ -38,7 +38,7 @@ function formatDate(date: Date): string {
     <div class="container">
       <div class="blog-grid">
         {posts.map((post) => (
-          <a href={`/blog/${post.id}/`} class="card blog-card">
+          <a href={`${import.meta.env.BASE_URL}blog/${post.id}/`} class="card blog-card">
             {post.data.image && (
               <img
                 src={post.data.image}
