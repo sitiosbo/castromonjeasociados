@@ -5,5 +5,5 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   output: "static",
   site: "https://sitiosbo.github.io",
-  base: "/castromonjeasociados",
+  base: "/castromonjeasociados/",
 });
