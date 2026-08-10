@@ -2,6 +2,15 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    if (url.pathname === '/api/debug-env') {
+      return new Response(JSON.stringify({
+        hasClientId: !!env.GITHUB_CLIENT_ID,
+        hasSecret: !!env.GITHUB_CLIENT_SECRET
+      }), {
+        headers: { 'content-type': 'application/json' }
+      });
+    }
+
     if (url.pathname === '/api/auth') {
       return handleAuth(request, env);
     }
