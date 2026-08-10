@@ -5,7 +5,7 @@ import logo from '../assets/images/logo.png';
 
 <nav class="navbar">
   <div class="container nav-container">
-    <a href="#" class="logo">
+    <a href={import.meta.env.BASE_URL} class="logo">
       <Image
         src={logo}
         alt="Castro & Monje Asociados"
@@ -18,11 +18,12 @@ import logo from '../assets/images/logo.png';
       &#9776;
     </button>
     <div class="nav-menu">
-      <a href="#nosotros" class="nav-link">Nosotros</a>
-      <a href="#areas" class="nav-link">Áreas de Práctica</a>
-      <a href="#equipo" class="nav-link">Equipo</a>
-      <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#contacto" class="btn btn-primary">Evaluación Inicial</a>
+      <a href={`${import.meta.env.BASE_URL}#nosotros`} class="nav-link">Nosotros</a>
+<a href={`${import.meta.env.BASE_URL}#areas`} class="nav-link">Áreas de Práctica</a>
+<a href={`${import.meta.env.BASE_URL}#equipo`} class="nav-link">Equipo</a>
+<a href={`${import.meta.env.BASE_URL}#faq`} class="nav-link">FAQ</a>
+<a href={`${import.meta.env.BASE_URL}blog/`} class="nav-link">Blog</a>
+<a href={`${import.meta.env.BASE_URL}#contacto`} class="btn btn-primary">Evaluación Inicial</a>
     </div>
   </div>
 </nav>
