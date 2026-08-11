@@ -259,8 +259,7 @@
 }
 .blog-hero-img {
   width: 100%;
-  max-height: 420px;
-  object-fit: cover;
+  height: auto;
   border-radius: var(--radius-md);
   margin-bottom: 2.5rem;
 }
