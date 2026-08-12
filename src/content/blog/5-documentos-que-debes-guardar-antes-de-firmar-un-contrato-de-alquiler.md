@@ -35,4 +35,6 @@ Un contrato mal redactado, aunque esté firmado, puede dejar cláusulas ambiguas
 ---
 
 Si estás por firmar un contrato de alquiler y quieres que lo revisemos antes de comprometerte, conversemos.
+---
+
 *Este artículo tiene fines informativos y no constituye asesoría legal. Cada caso es particular y requiere una evaluación profesional. Si necesitas orientación sobre tu situación específica, [contáctanos](https://wa.me/59170557088?text=Hola,%20quisiera%20asesor%C3%ADa%20sobre%20un%20tema%20laboral) para una evaluación inicial.*
